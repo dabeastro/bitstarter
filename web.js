@@ -1,10 +1,13 @@
-var express = require('express');
+var express = require('express')
+var fs = require('fs');
+var app = express.createServer(express.logger());
 
-Var App = Express.Createserver(Express.Logger());
+var content = fs.readFileSync('index.html');
 
-App.Get('/', Function(Request, Response) {
-  Response.Send('Hello World2!');
+app.get('/', function(request, response) {
+    response.send(content.toString("utc 8"));
 });
+
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
